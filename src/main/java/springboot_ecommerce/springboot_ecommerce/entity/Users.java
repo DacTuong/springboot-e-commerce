@@ -1,4 +1,4 @@
-package springboot_ecommerce.springboot_ecommerce.model;
+package springboot_ecommerce.springboot_ecommerce.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -22,5 +22,4 @@ public class Users {
     private String username;
     private String password;
     private String email;
-
 }

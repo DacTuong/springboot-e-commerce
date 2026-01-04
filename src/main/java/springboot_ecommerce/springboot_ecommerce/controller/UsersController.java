@@ -2,7 +2,7 @@ package springboot_ecommerce.springboot_ecommerce.controller;
 
 import org.springframework.web.bind.annotation.RestController;
 
-import springboot_ecommerce.springboot_ecommerce.model.Users;
+import springboot_ecommerce.springboot_ecommerce.entity.Users;
 import springboot_ecommerce.springboot_ecommerce.service.UsersService;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
