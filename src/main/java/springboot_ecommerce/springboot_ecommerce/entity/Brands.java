@@ -16,6 +16,8 @@ public class Brands {
     private Long id;
     @Column(name = "brand_name", nullable = false)
     private String name;
+    @Column(name = "brand_slug", nullable = false)
+    private String slug;
 
     // ===== Getter & Setter =====
     public Long getId() {
@@ -32,6 +34,14 @@ public class Brands {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getSlug() {
+        return slug;
+    }
+
+    public void setSlug(String slug) {
+        this.slug = slug;
     }
 
 }

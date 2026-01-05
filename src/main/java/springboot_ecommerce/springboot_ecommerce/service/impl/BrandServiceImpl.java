@@ -21,7 +21,13 @@ public class BrandServiceImpl implements BrandService {
             if (b.getName() == null || b.getName().isBlank()) {
                 throw new RuntimeException("Tên thương hiệu không được để trống");
             }
+            if (b.getSlug() == null || b.getSlug().isBlank()) {
+                throw new RuntimeException("Slug thương hiệu không được để trống");
+            }
 
+            if (brandRepository.existsBySlug(b.getSlug())) {
+                throw new RuntimeException("Slug đã tồn tại: " + b.getSlug());
+            }
         }
 
         brandRepository.saveAll(brands);
