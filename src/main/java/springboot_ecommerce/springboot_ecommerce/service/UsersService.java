@@ -3,7 +3,8 @@ package springboot_ecommerce.springboot_ecommerce.service;
 import org.springframework.stereotype.Service;
 
 import springboot_ecommerce.springboot_ecommerce.entity.Users;
-import springboot_ecommerce.springboot_ecommerce.reponsitory.UsersReponsitory;
+import springboot_ecommerce.springboot_ecommerce.repository.UsersReponsitory;
+
 import java.util.List;
 
 @Service

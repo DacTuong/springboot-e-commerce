@@ -1,4 +1,5 @@
-package springboot_ecommerce.springboot_ecommerce.reponsitory;
+
+package springboot_ecommerce.springboot_ecommerce.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

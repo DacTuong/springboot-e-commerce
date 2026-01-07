@@ -1,41 +1,64 @@
 package springboot_ecommerce.springboot_ecommerce.service.impl;
 
+import java.io.File;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import springboot_ecommerce.springboot_ecommerce.dto.BrandDTO;
 import springboot_ecommerce.springboot_ecommerce.entity.Brands;
-import springboot_ecommerce.springboot_ecommerce.reponsitory.BrandRepository;
+import springboot_ecommerce.springboot_ecommerce.repository.BrandRepository;
 import springboot_ecommerce.springboot_ecommerce.service.BrandService;
 
 @Service
 public class BrandServiceImpl implements BrandService {
+
     @Autowired
     private BrandRepository brandRepository;
 
+    private static final String UPLOAD_DIR = System.getProperty("user.dir") + "/uploads/brands";
+
     @Override
-    public void saveAll(List<Brands> brands) {
-        for (Brands b : brands) {
+    public void saveAll(List<BrandDTO> brands, List<MultipartFile> images) {
 
-            if (b.getName() == null || b.getName().isBlank()) {
-                throw new RuntimeException("Tên thương hiệu không được để trống");
-            }
-            if (b.getSlug() == null || b.getSlug().isBlank()) {
-                throw new RuntimeException("Slug thương hiệu không được để trống");
+        File dir = new File(UPLOAD_DIR);
+        if (!dir.exists())
+            dir.mkdirs();
+
+        for (int i = 0; i < brands.size(); i++) {
+
+            BrandDTO dto = brands.get(i);
+
+            if (dto.getName() == null || dto.getName().isBlank()) {
+                throw new IllegalArgumentException("Tên thương hiệu không được để trống");
             }
 
-            if (brandRepository.existsBySlug(b.getSlug())) {
-                throw new RuntimeException("Slug đã tồn tại: " + b.getSlug());
+            Brands brand = new Brands();
+            brand.setName(dto.getName());
+            brand.setSlug(dto.getSlug());
+
+            // xử lý ảnh nếu có
+            if (images != null && i < images.size()) {
+                MultipartFile file = images.get(i);
+                if (file != null && !file.isEmpty()) {
+                    try {
+                        String filename = System.currentTimeMillis() + "_" + file.getOriginalFilename();
+                        file.transferTo(new File(UPLOAD_DIR + "/" + filename));
+                        brand.setImage(filename);
+                    } catch (Exception e) {
+                        throw new RuntimeException("Upload ảnh thất bại", e);
+                    }
+                }
             }
+
+            brandRepository.save(brand);
         }
-
-        brandRepository.saveAll(brands);
     }
 
     @Override
     public List<Brands> getAll() {
         return brandRepository.findAll();
     }
-
 }

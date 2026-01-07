@@ -19,6 +19,9 @@ public class Brands {
     @Column(name = "brand_slug", nullable = false)
     private String slug;
 
+    @Column(name = "brand_image")
+    private String image;
+
     // ===== Getter & Setter =====
     public Long getId() {
         return id;
@@ -44,4 +47,11 @@ public class Brands {
         this.slug = slug;
     }
 
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
 }
