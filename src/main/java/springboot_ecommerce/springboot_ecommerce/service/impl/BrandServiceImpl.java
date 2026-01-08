@@ -61,4 +61,23 @@ public class BrandServiceImpl implements BrandService {
     public List<Brands> getAll() {
         return brandRepository.findAll();
     }
+
+    @Override
+    public Brands getBrandById(Long id) {
+        return brandRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Không tìm thấy brand id = " + id));
+    }
+
+    @Override
+    public void deleteBrandID(Long id) {
+        Brands brand = brandRepository.findById(id).orElseThrow(() -> new RuntimeException("Brand không tồn tại"));
+        if (brand.getImage() != null) {
+            File imageFile = new File(UPLOAD_DIR + "/" + brand.getImage());
+            if (imageFile.exists()) {
+                imageFile.delete();
+            }
+        }
+        brandRepository.deleteById(id);
+    }
+
 }

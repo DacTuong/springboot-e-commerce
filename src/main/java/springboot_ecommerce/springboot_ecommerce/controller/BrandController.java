@@ -11,6 +11,8 @@ import org.springframework.web.multipart.MultipartFile;
 import springboot_ecommerce.springboot_ecommerce.dto.BrandDTO;
 import springboot_ecommerce.springboot_ecommerce.entity.Brands;
 import springboot_ecommerce.springboot_ecommerce.service.BrandService;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @RestController
 @RequestMapping("/api/brand")
@@ -35,4 +37,16 @@ public class BrandController {
     public ResponseEntity<List<Brands>> getAll() {
         return ResponseEntity.ok(brandService.getAll());
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteBrand(@PathVariable Long id) {
+        brandService.deleteBrandID(id);
+        return ResponseEntity.ok("Xoá thương hiệu thành công");
+    }
+
+    @GetMapping("/{id}")
+    public Brands getBrandById(@PathVariable Long id) {
+        return brandService.getBrandById(id);
+    }
+
 }

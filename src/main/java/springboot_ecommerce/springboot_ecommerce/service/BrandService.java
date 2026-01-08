@@ -11,4 +11,9 @@ public interface BrandService {
     void saveAll(List<BrandDTO> brands, List<MultipartFile> images);
 
     List<Brands> getAll();
+
+    Brands getBrandById(Long id);
+
+    void deleteBrandID(Long id);
+
 }
