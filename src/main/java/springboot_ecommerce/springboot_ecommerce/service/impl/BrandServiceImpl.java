@@ -58,6 +58,30 @@ public class BrandServiceImpl implements BrandService {
     }
 
     @Override
+    public void updateBrand(Long id, BrandDTO dto, MultipartFile image) {
+        Brands brand = brandRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Không thể tìm thấy Brand id =" + id));
+        brand.setName(dto.getName());
+        brand.setSlug(dto.getSlug());
+        if (image != null && !image.isEmpty()) {
+            if (brand.getImage() != null) {
+                File oldFile = new File(UPLOAD_DIR + "/" + brand.getImage());
+                if (oldFile.exists())
+                    oldFile.delete();
+            }
+            try {
+                String fileName = System.currentTimeMillis() + "_" + image.getOriginalFilename();
+                image.transferTo(new File(UPLOAD_DIR + "/" + fileName));
+                brand.setImage(fileName);
+            } catch (Exception e) {
+                throw new RuntimeException("Upload ảnh thất bại");
+            }
+
+        }
+        brandRepository.save(brand);
+    }
+
+    @Override
     public List<Brands> getAll() {
         return brandRepository.findAll();
     }

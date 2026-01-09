@@ -16,4 +16,5 @@ public interface BrandService {
 
     void deleteBrandID(Long id);
 
+    void updateBrand(Long id, BrandDTO brandDTO, MultipartFile image);
 }
