@@ -12,7 +12,7 @@ import springboot_ecommerce.springboot_ecommerce.entity.Brands;
 import springboot_ecommerce.springboot_ecommerce.service.BrandService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+
 import org.springframework.web.bind.annotation.PathVariable;
 
 @RestController
