@@ -9,7 +9,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "brands")
-public class Brands {
+public class Brand {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_brand")
@@ -54,4 +54,5 @@ public class Brands {
     public void setImage(String image) {
         this.image = image;
     }
+
 }

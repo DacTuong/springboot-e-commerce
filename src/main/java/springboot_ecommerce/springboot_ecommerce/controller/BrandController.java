@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import springboot_ecommerce.springboot_ecommerce.dto.BrandDTO;
-import springboot_ecommerce.springboot_ecommerce.entity.Brands;
+import springboot_ecommerce.springboot_ecommerce.entity.Brand;
 import springboot_ecommerce.springboot_ecommerce.service.BrandService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -35,7 +35,7 @@ public class BrandController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Brands>> getAll() {
+    public ResponseEntity<List<Brand>> getAll() {
         return ResponseEntity.ok(brandService.getAll());
     }
 
@@ -46,7 +46,7 @@ public class BrandController {
     }
 
     @GetMapping("/{id}")
-    public Brands getBrandById(@PathVariable Long id) {
+    public Brand getBrandById(@PathVariable Long id) {
         return brandService.getBrandById(id);
     }
 

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import springboot_ecommerce.springboot_ecommerce.dto.BrandDTO;
-import springboot_ecommerce.springboot_ecommerce.entity.Brands;
+import springboot_ecommerce.springboot_ecommerce.entity.Brand;
 import springboot_ecommerce.springboot_ecommerce.repository.BrandRepository;
 import springboot_ecommerce.springboot_ecommerce.service.BrandService;
 
@@ -35,7 +35,7 @@ public class BrandServiceImpl implements BrandService {
                 throw new IllegalArgumentException("Tên thương hiệu không được để trống");
             }
 
-            Brands brand = new Brands();
+            Brand brand = new Brand();
             brand.setName(dto.getName());
             brand.setSlug(dto.getSlug());
 
@@ -59,7 +59,7 @@ public class BrandServiceImpl implements BrandService {
 
     @Override
     public void updateBrand(Long id, BrandDTO dto, MultipartFile image) {
-        Brands brand = brandRepository.findById(id)
+        Brand brand = brandRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Không thể tìm thấy Brand id =" + id));
         brand.setName(dto.getName());
         brand.setSlug(dto.getSlug());
@@ -82,19 +82,19 @@ public class BrandServiceImpl implements BrandService {
     }
 
     @Override
-    public List<Brands> getAll() {
+    public List<Brand> getAll() {
         return brandRepository.findAll();
     }
 
     @Override
-    public Brands getBrandById(Long id) {
+    public Brand getBrandById(Long id) {
         return brandRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Không tìm thấy brand id = " + id));
     }
 
     @Override
     public void deleteBrandID(Long id) {
-        Brands brand = brandRepository.findById(id).orElseThrow(() -> new RuntimeException("Brand không tồn tại"));
+        Brand brand = brandRepository.findById(id).orElseThrow(() -> new RuntimeException("Brand không tồn tại"));
         if (brand.getImage() != null) {
             File imageFile = new File(UPLOAD_DIR + "/" + brand.getImage());
             if (imageFile.exists()) {

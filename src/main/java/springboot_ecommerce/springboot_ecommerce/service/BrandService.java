@@ -5,14 +5,14 @@ import java.util.List;
 import org.springframework.web.multipart.MultipartFile;
 
 import springboot_ecommerce.springboot_ecommerce.dto.BrandDTO;
-import springboot_ecommerce.springboot_ecommerce.entity.Brands;
+import springboot_ecommerce.springboot_ecommerce.entity.Brand;
 
 public interface BrandService {
     void saveAll(List<BrandDTO> brands, List<MultipartFile> images);
 
-    List<Brands> getAll();
+    List<Brand> getAll();
 
-    Brands getBrandById(Long id);
+    Brand getBrandById(Long id);
 
     void deleteBrandID(Long id);
 
