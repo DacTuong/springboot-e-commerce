@@ -1,35 +1,31 @@
 package springboot_ecommerce.springboot_ecommerce.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "brand_category")
 public class CategoryBrand {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_brand_cate")
-    private Long idBrandCate;
+    private Long id; // 🔥 đổi từ idBrandCate → id
+
     @ManyToOne
-    @JoinColumn(name = "id_category")
-    private Category category;
+    @JoinColumn(name = "id_category", nullable = false)
+    private Category category; // OK
+
     @ManyToOne
-    @JoinColumn(name = "id_brand")
-    private Brand brand;
+    @JoinColumn(name = "id_brand", nullable = false)
+    private Brand brand; // OK
 
     // ===== Getter & Setter =====
-    public Long getIdBrandCate() {
-        return idBrandCate;
+    public Long getId() {
+        return id;
     }
 
-    public void setIdBrandCate(Long idBrandCate) {
-        this.idBrandCate = idBrandCate;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Category getCategory() {
