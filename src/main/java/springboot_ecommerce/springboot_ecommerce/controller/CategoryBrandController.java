@@ -12,10 +12,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import springboot_ecommerce.springboot_ecommerce.dto.CategoryBrandDTO;
 import springboot_ecommerce.springboot_ecommerce.entity.CategoryBrand;
-import springboot_ecommerce.springboot_ecommerce.repository.CategoryBrandRepository;
+
 import springboot_ecommerce.springboot_ecommerce.service.CategoryBrandService;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+
 
 @RestController
 @RequestMapping("/api/category-brand")
