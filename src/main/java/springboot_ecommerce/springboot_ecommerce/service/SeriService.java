@@ -12,5 +12,7 @@ public interface SeriService {
 
     Seri getSeriById(Long id);
 
+    void deleteSeriID(Long id);
+
     void updateSeri(Long id, SeriDTO seriDTO);
 }

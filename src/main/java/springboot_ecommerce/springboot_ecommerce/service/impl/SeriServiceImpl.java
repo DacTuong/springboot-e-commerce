@@ -65,4 +65,14 @@ public class SeriServiceImpl implements SeriService {
         }
         seriRepository.save(seri);
     }
+
+    @Override
+    public void deleteSeriID(Long id) {
+        Seri seri = seriRepository.findById(id).orElseThrow(() -> new RuntimeException("Seri này không tồn tại"));
+        // if (productRepository.existsBySeri(seri)) {
+        // throw new RuntimeException("Seri đang được sử dụng, không thể xóa");
+        // }
+
+        seriRepository.delete(seri);
+    }
 }
