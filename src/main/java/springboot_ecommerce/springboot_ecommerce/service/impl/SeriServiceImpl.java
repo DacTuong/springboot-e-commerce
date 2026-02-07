@@ -44,4 +44,25 @@ public class SeriServiceImpl implements SeriService {
 
         }
     }
+
+    @Override
+    public List<Seri> getAll() {
+        return seriRepository.findAll();
+    }
+
+    @Override
+    public Seri getSeriById(Long id) {
+        return seriRepository.findById(id).orElseThrow(() -> new RuntimeException("seri này không tồn tại"));
+    }
+
+    @Override
+    public void updateSeri(Long id, SeriDTO seriDTO) {
+        Seri seri = seriRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Không thể tìm thấy seri só" + id));
+
+        if (seriDTO.getNameSeri() != null) {
+            seri.setNameSeri(seriDTO.getNameSeri());
+        }
+        seriRepository.save(seri);
+    }
 }
