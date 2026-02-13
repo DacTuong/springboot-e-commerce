@@ -5,11 +5,12 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class AttributeGroupDTO {
+
     @JsonProperty("category_id")
     private Long categoryId;
 
-    @JsonProperty("groups_name")
-    private List<String> groupName;
+    @JsonProperty("groups")
+    private List<GroupItemAttrDTO> groups;
 
     public Long getCategoryId() {
         return categoryId;
@@ -19,11 +20,11 @@ public class AttributeGroupDTO {
         this.categoryId = categoryId;
     }
 
-    public List<String> getGroupName() {
-        return groupName;
+    public List<GroupItemAttrDTO> getGroups() {
+        return groups;
     }
 
-    public void setGroupName(List<String> groupName) {
-        this.groupName = groupName;
+    public void setGroups(List<GroupItemAttrDTO> groups) {
+        this.groups = groups;
     }
 }

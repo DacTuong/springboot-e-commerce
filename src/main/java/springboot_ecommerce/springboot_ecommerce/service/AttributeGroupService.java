@@ -6,4 +6,6 @@ import springboot_ecommerce.springboot_ecommerce.dto.AttributeGroupDTO;
 
 public interface AttributeGroupService {
     void createGroup(List<AttributeGroupDTO> attributeGroups);
+
+    List<AttributeGroupDTO> getAllAttributeGroup();
 }
