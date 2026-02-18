@@ -9,6 +9,9 @@ public class GroupItemAttrDTO {
     @JsonProperty("name_group")
     private String nameGroup;
 
+    public GroupItemAttrDTO() {
+    }
+
     public GroupItemAttrDTO(Long idGroup, String nameGroup) {
         this.idGroup = idGroup;
         this.nameGroup = nameGroup;

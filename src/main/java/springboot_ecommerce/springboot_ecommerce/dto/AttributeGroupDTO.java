@@ -9,7 +9,7 @@ public class AttributeGroupDTO {
     @JsonProperty("category_id")
     private Long categoryId;
 
-    @JsonProperty("groups")
+    @JsonProperty("groups_name")
     private List<GroupItemAttrDTO> groups;
 
     public Long getCategoryId() {
