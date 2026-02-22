@@ -73,4 +73,12 @@ public class AttributeGroupImpl implements AttributeGroupService {
         return result;
 
     }
+
+    @Override
+    public List<GroupItemAttrDTO> getGroupsByCategoryId(Long categoryId) {
+        List<AttributeGroup> groups = attributeGroupRepository.findByCategory_IdCategory(categoryId);
+        return groups.stream().map(group -> new GroupItemAttrDTO(
+                group.getIdGroup(),
+                group.getNameGroup())).toList();
+    }
 }
