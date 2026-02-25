@@ -1,15 +1,18 @@
 package springboot_ecommerce.springboot_ecommerce.controller;
 
+import java.util.List;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+
 import org.springframework.web.bind.annotation.RestController;
 
 import springboot_ecommerce.springboot_ecommerce.dto.AttributeCategoryDTO;
+
 import springboot_ecommerce.springboot_ecommerce.service.AttributeService;
 
 @RestController
@@ -26,6 +29,11 @@ public class AttributeController {
     public ResponseEntity<?> saveAttribute(@RequestBody AttributeCategoryDTO attributeCategoryDTO) {
         attributeService.saveAttribute(attributeCategoryDTO);
         return ResponseEntity.ok("save success");
+    }
+
+    @GetMapping
+    public ResponseEntity<List<AttributeCategoryDTO>> getAllAttribute() {
+        return ResponseEntity.ok(attributeService.getAllAttributes());
     }
 
 }

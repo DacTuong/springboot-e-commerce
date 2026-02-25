@@ -8,8 +8,8 @@ public class AttributeFromGroupDTO {
     @JsonProperty("id_group")
     private Long idGroup;
 
-    @JsonProperty("group_attribute")
-    private List<AttributeItemDTO> listAttribute;
+    @JsonProperty("attributes")
+    private List<AttributeItemDTO> attributes;
 
     public Long getIdGroup() {
         return idGroup;
@@ -20,10 +20,10 @@ public class AttributeFromGroupDTO {
     }
 
     public List<AttributeItemDTO> getAttributes() {
-        return listAttribute;
+        return attributes;
     }
 
-    public void setAttributes(List<AttributeItemDTO> listAttribute) {
-        this.listAttribute = listAttribute;
+    public void setAttributes(List<AttributeItemDTO> attributes) {
+        this.attributes = attributes;
     }
 }

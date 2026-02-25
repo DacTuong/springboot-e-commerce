@@ -3,6 +3,9 @@ package springboot_ecommerce.springboot_ecommerce.dto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class AttributeItemDTO {
+
+    @JsonProperty("id_attribute")
+    private Long idAttribute;
     @JsonProperty("name_attribute")
     private String nameAttribute;
     @JsonProperty("data_type")
@@ -12,9 +15,18 @@ public class AttributeItemDTO {
     public AttributeItemDTO() {
     }
 
-    public AttributeItemDTO(String nameAttribute, String dataType) {
+    public AttributeItemDTO(Long idAttribute, String nameAttribute, String dataType) {
+        this.idAttribute = idAttribute;
         this.nameAttribute = nameAttribute;
         this.dataType = dataType;
+    }
+
+    public Long getIdAttribute() {
+        return idAttribute;
+    }
+
+    public void setIdAttribute(Long idAttribute) {
+        this.idAttribute = idAttribute;
     }
 
     public String getNameAttribute() {
