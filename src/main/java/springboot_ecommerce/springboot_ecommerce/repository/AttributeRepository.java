@@ -10,8 +10,8 @@ import springboot_ecommerce.springboot_ecommerce.entity.Attribute;
 public interface AttributeRepository extends JpaRepository<Attribute, Long> {
     @Query("""
             SELECT att FROM Attribute att
-            JOIN FECT att.category
-            JOIN FECT att.attrbuteGroup
+            JOIN FETCH att.category
+            JOIN FETCH att.attributeGroup
             """)
     List<Attribute> findAllWithJoin();
 }

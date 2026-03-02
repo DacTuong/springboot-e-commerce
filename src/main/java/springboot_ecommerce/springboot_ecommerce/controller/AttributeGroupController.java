@@ -12,7 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import springboot_ecommerce.springboot_ecommerce.dto.AttributeGroupDTO;
+import springboot_ecommerce.springboot_ecommerce.dto.request.CreateAttributeGroupRequest;
+import springboot_ecommerce.springboot_ecommerce.dto.response.AttributeGroupResponse;
 import springboot_ecommerce.springboot_ecommerce.service.AttributeGroupService;
 
 @RestController
@@ -27,14 +28,14 @@ public class AttributeGroupController {
     }
 
     @PostMapping
-    public ResponseEntity<?> createGroup(@RequestBody List<AttributeGroupDTO> attributeGroupDTOs) {
+    public ResponseEntity<?> createGroup(@RequestBody List<CreateAttributeGroupRequest> attributeGroupDTOs) {
         attributeGroupService.createGroup(attributeGroupDTOs);
         return ResponseEntity.ok("save successfully");
 
     }
 
     @GetMapping
-    public List<AttributeGroupDTO> getAll() {
+    public List<AttributeGroupResponse> getAll() {
         return attributeGroupService.getAllAttributeGroup();
     }
 

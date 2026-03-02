@@ -1,18 +1,18 @@
-package springboot_ecommerce.springboot_ecommerce.dto;
+package springboot_ecommerce.springboot_ecommerce.dto.request;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class GroupItemAttrDTO {
+public class CreateGroupItemRequest {
     @JsonProperty("id_group")
     private Long idGroup;
 
     @JsonProperty("name_group")
     private String nameGroup;
 
-    public GroupItemAttrDTO() {
+    public CreateGroupItemRequest() {
     }
 
-    public GroupItemAttrDTO(Long idGroup, String nameGroup) {
+    public CreateGroupItemRequest(Long idGroup, String nameGroup) {
         this.idGroup = idGroup;
         this.nameGroup = nameGroup;
     }

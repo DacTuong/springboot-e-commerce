@@ -1,16 +1,16 @@
-package springboot_ecommerce.springboot_ecommerce.dto;
+package springboot_ecommerce.springboot_ecommerce.dto.request;
 
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class AttributeGroupDTO {
+public class CreateAttributeGroupRequest {
 
     @JsonProperty("category_id")
     private Long categoryId;
 
     @JsonProperty("groups_name")
-    private List<GroupItemAttrDTO> groups;
+    private List<CreateGroupItemRequest> groups;
 
     public Long getCategoryId() {
         return categoryId;
@@ -20,11 +20,11 @@ public class AttributeGroupDTO {
         this.categoryId = categoryId;
     }
 
-    public List<GroupItemAttrDTO> getGroups() {
+    public List<CreateGroupItemRequest> getGroups() {
         return groups;
     }
 
-    public void setGroups(List<GroupItemAttrDTO> groups) {
+    public void setGroups(List<CreateGroupItemRequest> groups) {
         this.groups = groups;
     }
 }

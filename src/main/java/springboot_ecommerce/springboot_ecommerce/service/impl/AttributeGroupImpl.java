@@ -7,8 +7,10 @@ import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
-import springboot_ecommerce.springboot_ecommerce.dto.AttributeGroupDTO;
-import springboot_ecommerce.springboot_ecommerce.dto.GroupItemAttrDTO;
+import springboot_ecommerce.springboot_ecommerce.dto.request.CreateAttributeGroupRequest;
+import springboot_ecommerce.springboot_ecommerce.dto.request.CreateGroupItemRequest;
+import springboot_ecommerce.springboot_ecommerce.dto.response.AttributeGroupResponse;
+import springboot_ecommerce.springboot_ecommerce.dto.response.GroupItemResponse;
 import springboot_ecommerce.springboot_ecommerce.entity.AttributeGroup;
 import springboot_ecommerce.springboot_ecommerce.entity.Category;
 import springboot_ecommerce.springboot_ecommerce.repository.AttributeGroupRepository;
@@ -27,14 +29,14 @@ public class AttributeGroupImpl implements AttributeGroupService {
     }
 
     @Override
-    public void createGroup(List<AttributeGroupDTO> attributeGroupDTOs) {
+    public void createGroup(List<CreateAttributeGroupRequest> attributeGroupDTOs) {
 
         List<AttributeGroup> entities = new ArrayList<>();
-        for (AttributeGroupDTO dto : attributeGroupDTOs) {
+        for (CreateAttributeGroupRequest dto : attributeGroupDTOs) {
             Category category = categoryRepository.findById(dto.getCategoryId())
                     .orElseThrow(() -> new RuntimeException("Category không tồn tại"));
 
-            for (GroupItemAttrDTO groupDTO : dto.getGroups()) {
+            for (CreateGroupItemRequest groupDTO : dto.getGroups()) {
                 AttributeGroup attributeGroup = new AttributeGroup();
                 attributeGroup.setCategory(category);
                 attributeGroup.setNameGroup(groupDTO.getNameGroup());
@@ -46,10 +48,10 @@ public class AttributeGroupImpl implements AttributeGroupService {
     }
 
     @Override
-    public List<AttributeGroupDTO> getAllAttributeGroup() {
+    public List<AttributeGroupResponse> getAllAttributeGroup() {
         List<AttributeGroup> listAttribute = attributeGroupRepository.findAll();
 
-        Map<Long, List<GroupItemAttrDTO>> map = new LinkedHashMap<>();
+        Map<Long, List<GroupItemResponse>> map = new LinkedHashMap<>();
 
         for (AttributeGroup ag : listAttribute) {
             Long categoryId = ag.getCategory().getIdCategory();
@@ -57,16 +59,23 @@ public class AttributeGroupImpl implements AttributeGroupService {
             if (!map.containsKey(categoryId)) {
                 map.put(categoryId, new ArrayList<>());
             }
-            map.get(categoryId).add(new GroupItemAttrDTO(
+            map.get(categoryId).add(new GroupItemResponse(
                     ag.getIdGroup(),
                     ag.getNameGroup()));
         }
-        List<AttributeGroupDTO> result = new ArrayList<>();
-        for (Map.Entry<Long, List<GroupItemAttrDTO>> entry : map.entrySet()) {
-            AttributeGroupDTO dto = new AttributeGroupDTO();
+        List<AttributeGroupResponse> result = new ArrayList<>();
+        for (Map.Entry<Long, List<GroupItemResponse>> entry : map.entrySet()) {
+            AttributeGroupResponse dto = new AttributeGroupResponse();
 
             dto.setCategoryId(entry.getKey());
+
             dto.setGroups(entry.getValue());
+            for (AttributeGroup ag : listAttribute) {
+                if (ag.getCategory().getIdCategory().equals(entry.getKey())) {
+                    dto.setCategoryName(ag.getCategory().getCategoryName());
+                    break;
+                }
+            }
 
             result.add(dto);
         }
@@ -75,9 +84,9 @@ public class AttributeGroupImpl implements AttributeGroupService {
     }
 
     @Override
-    public List<GroupItemAttrDTO> getGroupsByCategoryId(Long categoryId) {
+    public List<CreateGroupItemRequest> getGroupsByCategoryId(Long categoryId) {
         List<AttributeGroup> groups = attributeGroupRepository.findByCategory_IdCategory(categoryId);
-        return groups.stream().map(group -> new GroupItemAttrDTO(
+        return groups.stream().map(group -> new CreateGroupItemRequest(
                 group.getIdGroup(),
                 group.getNameGroup())).toList();
     }

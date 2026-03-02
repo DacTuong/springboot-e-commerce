@@ -2,13 +2,14 @@ package springboot_ecommerce.springboot_ecommerce.service;
 
 import java.util.List;
 
-import springboot_ecommerce.springboot_ecommerce.dto.AttributeGroupDTO;
-import springboot_ecommerce.springboot_ecommerce.dto.GroupItemAttrDTO;
+import springboot_ecommerce.springboot_ecommerce.dto.request.CreateAttributeGroupRequest;
+import springboot_ecommerce.springboot_ecommerce.dto.request.CreateGroupItemRequest;
+import springboot_ecommerce.springboot_ecommerce.dto.response.AttributeGroupResponse;
 
 public interface AttributeGroupService {
-    void createGroup(List<AttributeGroupDTO> attributeGroups);
+    void createGroup(List<CreateAttributeGroupRequest> attributeGroups);
 
-    List<AttributeGroupDTO> getAllAttributeGroup();
+    List<AttributeGroupResponse> getAllAttributeGroup();
 
-    List<GroupItemAttrDTO> getGroupsByCategoryId(Long categoryId);
+    List<CreateGroupItemRequest> getGroupsByCategoryId(Long categoryId);
 }
