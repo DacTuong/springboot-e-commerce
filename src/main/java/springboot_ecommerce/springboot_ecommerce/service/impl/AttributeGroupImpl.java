@@ -49,7 +49,7 @@ public class AttributeGroupImpl implements AttributeGroupService {
 
     @Override
     public List<AttributeGroupResponse> getAllAttributeGroup() {
-        List<AttributeGroup> listAttribute = attributeGroupRepository.findAll();
+        List<AttributeGroup> listAttribute = attributeGroupRepository.findAllWithCategory();
 
         Map<Long, List<GroupItemResponse>> map = new LinkedHashMap<>();
 
