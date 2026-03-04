@@ -19,9 +19,6 @@ public class Attribute {
     private Long idAttribute;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_category", nullable = false)
-    private Category category;
-    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_group", nullable = false)
     private AttributeGroup attributeGroup;
 
@@ -38,14 +35,6 @@ public class Attribute {
 
     public void setIdAttribute(Long idAttribute) {
         this.idAttribute = idAttribute;
-    }
-
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
     }
 
     public AttributeGroup getAttributeGroup() {

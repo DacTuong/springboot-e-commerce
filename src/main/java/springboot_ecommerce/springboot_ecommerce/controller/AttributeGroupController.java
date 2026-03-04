@@ -17,7 +17,7 @@ import springboot_ecommerce.springboot_ecommerce.dto.response.AttributeGroupResp
 import springboot_ecommerce.springboot_ecommerce.service.AttributeGroupService;
 
 @RestController
-@RequestMapping("/api/attribute-group")
+@RequestMapping("/api/group-attributes")
 @CrossOrigin(origins = "http://localhost:3000")
 public class AttributeGroupController {
     @Autowired
