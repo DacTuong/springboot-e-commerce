@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import springboot_ecommerce.springboot_ecommerce.dto.request.CreateAttributeGroupRequest;
 import springboot_ecommerce.springboot_ecommerce.dto.response.AttributeGroupResponse;
+import springboot_ecommerce.springboot_ecommerce.entity.AttributeGroup;
 import springboot_ecommerce.springboot_ecommerce.service.AttributeGroupService;
 
 @RestController
@@ -39,8 +41,15 @@ public class AttributeGroupController {
         return attributeGroupService.getAllAttributeGroup();
     }
 
-    @GetMapping("/by-category")
-    public ResponseEntity<?> getGroupsByCategoryId(@RequestParam Long categoryId) {
-        return ResponseEntity.ok(attributeGroupService.getGroupsByCategoryId(categoryId));
-    }
+    // @GetMapping("/{groupId}")
+    // public AttributeGroup getGroup(@PathVariable Long groupId) {
+    // return attributeGroupService.getGroupWithCategory(groupId);
+    // }
+
+    // @GetMapping("/by-category")
+    // public ResponseEntity<?> getGroupsByCategoryId(@RequestParam Long categoryId)
+    // {
+    // return
+    // ResponseEntity.ok(attributeGroupService.getGroupsByCategoryId(categoryId));
+    // }
 }

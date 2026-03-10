@@ -40,6 +40,14 @@ public class AttributeServiceImpl implements AttributeService {
             throw new RuntimeException("Group is not found with id" + idGroup);
         }
         return attributeRepository.findByAttributeGroup_IdGroup(idGroup);
-
     }
+
+    // @Override
+    // public void createAttribute(Long idGroupAttribute, CreateAttributeRequest
+    // createAttributeRequest) {
+    // if(!attributeGroupRepository.existsById(idGroupAttribute)){
+    // throw new RuntimeException("Group is not found with id" + idGroupAttribute);
+    // }
+    // return
+    // }
 }

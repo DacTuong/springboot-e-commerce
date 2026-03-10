@@ -83,11 +83,17 @@ public class AttributeGroupImpl implements AttributeGroupService {
 
     }
 
-    @Override
-    public List<CreateGroupItemRequest> getGroupsByCategoryId(Long categoryId) {
-        List<AttributeGroup> groups = attributeGroupRepository.findByCategory_IdCategory(categoryId);
-        return groups.stream().map(group -> new CreateGroupItemRequest(
-                group.getIdGroup(),
-                group.getNameGroup())).toList();
-    }
+    // @Override
+    // public List<GroupItemResponse> getGroupsByCategoryId(Long categoryId) {
+    // List<AttributeGroup> groups =
+    // attributeGroupRepository.findByCategory_IdCategory(categoryId);
+    // return groups.stream().map(group -> new GroupItemResponse(
+    // group.getIdGroup(),
+    // group.getNameGroup())).toList();
+    // }
+
+    // @Override
+    // public AttributeGroup getGroupWithCategory(Long groupId) {
+    // return attributeGroupRepository.findGroupWithCategory(groupId);
+    // }
 }
