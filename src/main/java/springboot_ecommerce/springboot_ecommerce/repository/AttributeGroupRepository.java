@@ -15,11 +15,4 @@ public interface AttributeGroupRepository extends JpaRepository<AttributeGroup, 
     @Query("SELECT ag FROM AttributeGroup ag JOIN FETCH ag.category")
     List<AttributeGroup> findAllWithCategory();
 
-    // @Query("""
-    // SELECT g
-    // FROM AttributeGroup g
-    // JOIN FETCH g.category c
-    // WHERE g.idGroup = :groupId
-    // """)
-    // AttributeGroup findGroupWithCategory(@Param("groupId") Long groupId);
 }

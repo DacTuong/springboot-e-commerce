@@ -10,12 +10,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+
 import org.springframework.web.bind.annotation.RestController;
 
 import springboot_ecommerce.springboot_ecommerce.dto.request.CreateAttributeGroupRequest;
 import springboot_ecommerce.springboot_ecommerce.dto.response.AttributeGroupResponse;
-import springboot_ecommerce.springboot_ecommerce.entity.AttributeGroup;
+import springboot_ecommerce.springboot_ecommerce.dto.response.GroupItemResponse;
 import springboot_ecommerce.springboot_ecommerce.service.AttributeGroupService;
 
 @RestController
@@ -41,10 +41,11 @@ public class AttributeGroupController {
         return attributeGroupService.getAllAttributeGroup();
     }
 
-    // @GetMapping("/{groupId}")
-    // public AttributeGroup getGroup(@PathVariable Long groupId) {
-    // return attributeGroupService.getGroupWithCategory(groupId);
-    // }
+    // Lấy ra tên và id của nhóm thuộc tính
+    @GetMapping("/{idGroup}/attributes")
+    public GroupItemResponse getGroup(@PathVariable("idGroup") Long groupId) {
+        return attributeGroupService.getNameGroupByIdGroup(groupId);
+    }
 
     // @GetMapping("/by-category")
     // public ResponseEntity<?> getGroupsByCategoryId(@RequestParam Long categoryId)

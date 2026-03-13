@@ -6,14 +6,13 @@ import springboot_ecommerce.springboot_ecommerce.dto.request.CreateAttributeGrou
 
 import springboot_ecommerce.springboot_ecommerce.dto.response.AttributeGroupResponse;
 import springboot_ecommerce.springboot_ecommerce.dto.response.GroupItemResponse;
-import springboot_ecommerce.springboot_ecommerce.entity.AttributeGroup;
 
 public interface AttributeGroupService {
     void createGroup(List<CreateAttributeGroupRequest> attributeGroups);
 
     List<AttributeGroupResponse> getAllAttributeGroup();
 
-    // List<GroupItemResponse> getGroupsByCategoryId(Long categoryId);
+    GroupItemResponse getNameGroupByIdGroup(Long idGroup);
 
     // AttributeGroup getGroupWithCategory(Long groupId);
 }

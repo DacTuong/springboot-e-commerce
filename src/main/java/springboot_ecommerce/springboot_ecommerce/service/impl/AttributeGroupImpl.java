@@ -83,6 +83,14 @@ public class AttributeGroupImpl implements AttributeGroupService {
 
     }
 
+    @Override
+    public GroupItemResponse getNameGroupByIdGroup(Long idGroup) {
+        AttributeGroup group = attributeGroupRepository.findById(idGroup)
+                .orElseThrow(() -> new RuntimeException("Group not found"));
+        return new GroupItemResponse(
+                group.getIdGroup(),
+                group.getNameGroup());
+    }
     // @Override
     // public List<GroupItemResponse> getGroupsByCategoryId(Long categoryId) {
     // List<AttributeGroup> groups =
