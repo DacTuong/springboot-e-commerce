@@ -12,11 +12,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RestController;
 
+import springboot_ecommerce.springboot_ecommerce.dto.request.CreateAttributeRequest;
 import springboot_ecommerce.springboot_ecommerce.dto.response.AttributeResponse;
 import springboot_ecommerce.springboot_ecommerce.service.AttributeService;
 
 @RestController
-@RequestMapping("/api/groups")
+@RequestMapping("/api/group-attributes")
 @CrossOrigin(origins = "http://localhost:3000")
 public class AttributeController {
     private final AttributeService attributeService;
@@ -25,16 +26,16 @@ public class AttributeController {
         this.attributeService = attributeService;
     }
 
-    // @PostMapping
-    // public ResponseEntity<?> saveAttribute(@RequestBody AttributeCategoryDTO
-    // attributeCategoryDTO) {
-    // attributeService.saveAttribute(attributeCategoryDTO);
-    // return ResponseEntity.ok("save success");
-    // }
-
     @GetMapping("/{idGroup}/attributes")
     public ResponseEntity<List<AttributeResponse>> getAttributeByGroup(@PathVariable Long idGroup) {
         return ResponseEntity.ok(attributeService.getByGroupId(idGroup));
+    }
+
+    @PostMapping("/{idGroup}/attributes")
+    public ResponseEntity<?> createAttribute(@PathVariable Long idGroup,
+            @RequestBody List<CreateAttributeRequest> request) {
+        attributeService.saveAttributes(idGroup, request);
+        return ResponseEntity.ok("save");
     }
 
 }

@@ -4,29 +4,23 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class CreateAttributeRequest {
 
-    @JsonProperty("id_attribute")
-    private Long idAttribute;
     @JsonProperty("name_attribute")
     private String nameAttribute;
+
     @JsonProperty("data_type")
     private String dataType;
+
+    @JsonProperty("is_filter")
+    private Long isFilter;
 
     // ✅ BẮT BUỘC phải có
     public CreateAttributeRequest() {
     }
 
-    public CreateAttributeRequest(Long idAttribute, String nameAttribute, String dataType) {
-        this.idAttribute = idAttribute;
+    public CreateAttributeRequest(String nameAttribute, String dataType) {
+
         this.nameAttribute = nameAttribute;
         this.dataType = dataType;
-    }
-
-    public Long getIdAttribute() {
-        return idAttribute;
-    }
-
-    public void setIdAttribute(Long idAttribute) {
-        this.idAttribute = idAttribute;
     }
 
     public String getNameAttribute() {
@@ -44,5 +38,13 @@ public class CreateAttributeRequest {
 
     public void setDataType(String dataType) {
         this.dataType = dataType;
+    }
+
+    public Long getIsFilter() {
+        return isFilter;
+    }
+
+    public void setIsFilter(Long isFilter) {
+        this.isFilter = isFilter;
     }
 }

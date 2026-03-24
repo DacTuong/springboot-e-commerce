@@ -42,7 +42,7 @@ public class AttributeGroupController {
     }
 
     // Lấy ra tên và id của nhóm thuộc tính
-    @GetMapping("/{idGroup}/attributes")
+    @GetMapping("/{idGroup}/info")
     public GroupItemResponse getGroup(@PathVariable("idGroup") Long groupId) {
         return attributeGroupService.getNameGroupByIdGroup(groupId);
     }

@@ -27,6 +27,9 @@ public class Attribute {
 
     @Column(name = "data_type", nullable = false)
     private String dataType;
+
+    @Column(name = "is_filterable", nullable = false)
+    private Long isFilter;
     // ===== Getter & Setter =====
 
     public Long getIdAttribute() {
@@ -55,10 +58,17 @@ public class Attribute {
 
     public String getDataType() {
         return dataType;
-
     }
 
-    public void setDatatype(String dataType) {
+    public void setDataType(String dataType) {
         this.dataType = dataType;
+    }
+
+    public Long getIsFiter() {
+        return isFilter;
+    }
+
+    public void setIsFiter(Long isFiter) {
+        this.isFilter = isFiter;
     }
 }
