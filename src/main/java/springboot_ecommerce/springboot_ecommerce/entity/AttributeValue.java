@@ -40,11 +40,11 @@ public class AttributeValue {
         this.attribute = attribute;
     }
 
-    public String getValueAttribute() {
+    public String getValueAttributes() {
         return valueAttribute;
     }
 
-    public void setValueAttribute(String valueAttribute) {
+    public void setValueAttributes(String valueAttribute) {
         this.valueAttribute = valueAttribute;
     }
 

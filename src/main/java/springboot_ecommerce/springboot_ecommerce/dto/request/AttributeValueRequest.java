@@ -1,9 +1,14 @@
 package springboot_ecommerce.springboot_ecommerce.dto.request;
 
-public class AttributeValueRequest {
+import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+public class AttributeValueRequest {
+    @JsonProperty("attribute_id")
     private Long idAttribute;
-    private String valueAttribute;
+    @JsonProperty("values")
+    private List<String> valueAttributes;
 
     public Long getIdAttribute() {
         return idAttribute;
@@ -13,12 +18,12 @@ public class AttributeValueRequest {
         this.idAttribute = idAttribute;
     }
 
-    public String getValueAttribute() {
-        return valueAttribute;
+    public List<String> getValueAttributes() {
+        return valueAttributes;
     }
 
-    public void setValueAttribute(String valueAttribute) {
-        this.valueAttribute = valueAttribute;
+    public void setValueAttributes(List<String> valueAttributes) {
+        this.valueAttributes = valueAttributes;
     }
 
 }
