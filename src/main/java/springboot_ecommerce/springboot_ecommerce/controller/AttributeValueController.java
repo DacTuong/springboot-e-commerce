@@ -26,6 +26,10 @@ public class AttributeValueController {
             @RequestBody AttributeValueRequest request) {
 
         // attributeValueService.saveAttributeValue(request);
+        // In dữ liệu React gửi lên
+        // System.out.println("========== CONTROLLER ĐƯỢC GỌI ==========");
+        // System.out.println("Attribute ID: " + request.getIdAttribute());
+        // System.out.println("Value Attributes: " + request.getValueAttributes());
 
         try {
             attributeValueService.saveAttributeValue(request);

@@ -59,6 +59,6 @@ public class AttributeValueImpl implements AttributeValueService {
         }
 
         // 5. Lưu tất cả entity
-        // attributeValueRepository.saveAll(entities);
+        attributeValueRepository.saveAll(entities);
     }
 }

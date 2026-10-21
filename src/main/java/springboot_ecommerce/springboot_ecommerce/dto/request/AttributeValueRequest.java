@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class AttributeValueRequest {
     @JsonProperty("attribute_id")
     private Long idAttribute;
-    @JsonProperty("values")
+    @JsonProperty("value_attributes")
     private List<String> valueAttributes;
 
     public Long getIdAttribute() {
