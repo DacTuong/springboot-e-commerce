@@ -6,12 +6,6 @@ public class AttributeResponse {
     @JsonProperty("id_attribute")
     private Long idAttribute;
 
-    @JsonProperty("id_group")
-    private Long idGroup;
-
-    @JsonProperty("name_group")
-    private String nameGroup;
-
     @JsonProperty("name_attribute")
     private String nameAttribute;
 
@@ -22,20 +16,11 @@ public class AttributeResponse {
     public AttributeResponse() {
     }
 
-    public AttributeResponse(Long idGroup, String nameGroup, Long idAttribute, String nameAttribute, String dataType) {
-        this.idGroup = idGroup;
-        this.nameGroup = nameGroup;
+    public AttributeResponse(Long idAttribute, String nameAttribute, String dataType) {
+
         this.idAttribute = idAttribute;
         this.nameAttribute = nameAttribute;
         this.dataType = dataType;
-    }
-
-    public Long getIdGroup() {
-        return idGroup;
-    }
-
-    public void setIdGroup(Long idGroup) {
-        this.idGroup = idGroup;
     }
 
     public Long getIdAttribute() {
@@ -44,15 +29,6 @@ public class AttributeResponse {
 
     public void setIdAttribute(Long idAttribute) {
         this.idAttribute = idAttribute;
-    }
-
-    public String getNameGroup() {
-        return nameGroup;
-    }
-
-    public void setNameGroup(String nameGroup) {
-        this.nameGroup = nameGroup;
-
     }
 
     public String getNameAttribute() {

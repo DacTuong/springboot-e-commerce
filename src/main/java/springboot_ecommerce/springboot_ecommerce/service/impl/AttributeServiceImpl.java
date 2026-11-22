@@ -8,6 +8,7 @@ import springboot_ecommerce.springboot_ecommerce.dto.request.CreateAttributeRequ
 import springboot_ecommerce.springboot_ecommerce.dto.response.AttributeResponse;
 import springboot_ecommerce.springboot_ecommerce.entity.Attribute;
 import springboot_ecommerce.springboot_ecommerce.entity.AttributeGroup;
+import springboot_ecommerce.springboot_ecommerce.entity.Brand;
 import springboot_ecommerce.springboot_ecommerce.repository.AttributeGroupRepository;
 import springboot_ecommerce.springboot_ecommerce.repository.AttributeRepository;
 
@@ -51,5 +52,15 @@ public class AttributeServiceImpl implements AttributeService {
         }).toList();
         attributeRepository.saveAll(attributes);
 
+    }
+
+    @Override
+    public AttributeResponse getAttributeById(Long idAttribute) {
+        Attribute attribute = attributeRepository.findById(idAttribute)
+                .orElseThrow(() -> new RuntimeException("Không tìm thấy thuộc tính này"));
+        return new AttributeResponse(
+                attribute.getIdAttribute(),
+                attribute.getNameAttribute(),
+                attribute.getDataType());
     }
 }

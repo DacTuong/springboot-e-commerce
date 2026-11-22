@@ -19,15 +19,12 @@ public interface AttributeRepository extends JpaRepository<Attribute, Long> {
 
     @Query("""
             SELECT new springboot_ecommerce.springboot_ecommerce.dto.response.AttributeResponse(
-                g.idGroup,
-                g.nameGroup,
                 a.idAttribute,
                 a.nameAttribute,
                a.dataType
             )
             FROM Attribute a
-            JOIN a.attributeGroup g
-            WHERE g.idGroup = :groupId
+            WHERE a.attributeGroup.idGroup = :groupId
             """)
     List<AttributeResponse> findByAttributeGroup_IdGroup(@Param("groupId") Long idGroup);
 }
