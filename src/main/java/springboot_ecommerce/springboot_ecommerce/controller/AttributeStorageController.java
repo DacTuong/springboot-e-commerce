@@ -11,28 +11,28 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import springboot_ecommerce.springboot_ecommerce.dto.request.AttributeTypeRequest;
+import springboot_ecommerce.springboot_ecommerce.dto.request.AttributeStorageRequest;
 import springboot_ecommerce.springboot_ecommerce.dto.response.AttributeResponse;
-import springboot_ecommerce.springboot_ecommerce.dto.response.AttributeTypeResponse;
-import springboot_ecommerce.springboot_ecommerce.entity.AttributeType;
-import springboot_ecommerce.springboot_ecommerce.service.AttributeTypeService;
+import springboot_ecommerce.springboot_ecommerce.dto.response.AttributeStorageResponse;
+import springboot_ecommerce.springboot_ecommerce.entity.AttributeStorage;
+import springboot_ecommerce.springboot_ecommerce.service.AttributeStorageService;
 
 import springboot_ecommerce.springboot_ecommerce.dto.response.AttributeResponse;
 
 @RestController
 @RequestMapping("/api/attribute-type")
 @CrossOrigin("http://localhost:3000")
-public class AttributeTypeController {
-    private final AttributeTypeService attributeTypeService;
+public class AttributeStorageController {
+    private final AttributeStorageService attributeTypeService;
 
-    public AttributeTypeController(
-            AttributeTypeService attributeTypeService) {
+    public AttributeStorageController(
+            AttributeStorageService attributeTypeService) {
         this.attributeTypeService = attributeTypeService;
     }
 
     @PostMapping
     public ResponseEntity<String> saveAll(
-            @RequestBody List<AttributeTypeRequest> requests) {
+            @RequestBody List<AttributeStorageRequest> requests) {
 
         attributeTypeService.saveAll(requests);
 
@@ -42,7 +42,7 @@ public class AttributeTypeController {
     }
 
     @GetMapping
-    public List<AttributeTypeResponse> getAll() {
-        return attributeTypeService.getAttributeType();
+    public List<AttributeStorageResponse> getAll() {
+        return attributeTypeService.getAttributeStorage();
     }
 }
