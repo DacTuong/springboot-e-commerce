@@ -45,8 +45,9 @@ public class AttributeServiceImpl implements AttributeService {
         List<Attribute> attributes = requests.stream().map(req -> {
             Attribute attribute = new Attribute();
             attribute.setNameAttribute(req.getNameAttribute());
-            attribute.setDataType(req.getDataType());
-            attribute.setIsFiter(req.getIsFilter());
+            attribute.setInputType(req.getInputType());
+
+            attribute.setIsFilterable(req.getIsFilterable());
             attribute.setAttributeGroup(group);
             return attribute;
         }).toList();
@@ -61,6 +62,12 @@ public class AttributeServiceImpl implements AttributeService {
         return new AttributeResponse(
                 attribute.getIdAttribute(),
                 attribute.getNameAttribute(),
-                attribute.getDataType());
+                attribute.getInputType(),
+                attribute.getAttributeStorage() != null
+                        ? attribute.getAttributeStorage().getIdStorage()
+                        : null,
+                attribute.getIsFilterable(),
+                attribute.getIsVariant());
+
     }
 }

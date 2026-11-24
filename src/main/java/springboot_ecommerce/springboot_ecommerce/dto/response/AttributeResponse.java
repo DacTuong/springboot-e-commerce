@@ -9,18 +9,35 @@ public class AttributeResponse {
     @JsonProperty("name_attribute")
     private String nameAttribute;
 
-    @JsonProperty("data_type")
-    private String dataType;
+    @JsonProperty("input_type")
+    private String inputType;
 
-    // ✅ BẮT BUỘC phải có
+    @JsonProperty("id_storage")
+    private Long idStorage;
+
+    @JsonProperty("is_filterable")
+    private Long isFilterable;
+
+    @JsonProperty("is_variant")
+    private Long isVariant;
+
     public AttributeResponse() {
     }
 
-    public AttributeResponse(Long idAttribute, String nameAttribute, String dataType) {
+    public AttributeResponse(
+            Long idAttribute,
+            String nameAttribute,
+            String inputType,
+            Long idStorage,
+            Long isFilterable,
+            Long isVariant) {
 
         this.idAttribute = idAttribute;
         this.nameAttribute = nameAttribute;
-        this.dataType = dataType;
+        this.inputType = inputType;
+        this.idStorage = idStorage;
+        this.isFilterable = isFilterable;
+        this.isVariant = isVariant;
     }
 
     public Long getIdAttribute() {
@@ -37,14 +54,37 @@ public class AttributeResponse {
 
     public void setNameAttribute(String nameAttribute) {
         this.nameAttribute = nameAttribute;
-
     }
 
-    public String getDataType() {
-        return dataType;
+    public String getInputType() {
+        return inputType;
     }
 
-    public void setDataType(String dataType) {
-        this.dataType = dataType;
+    public void setInputType(String inputType) {
+        this.inputType = inputType;
+    }
+
+    public Long getIdStorage() {
+        return idStorage;
+    }
+
+    public void setIdStorage(Long idStorage) {
+        this.idStorage = idStorage;
+    }
+
+    public Long getIsFilterable() {
+        return isFilterable;
+    }
+
+    public void setIsFilterable(Long isFilterable) {
+        this.isFilterable = isFilterable;
+    }
+
+    public Long getIsVariant() {
+        return isVariant;
+    }
+
+    public void setIsVariant(Long isVariant) {
+        this.isVariant = isVariant;
     }
 }

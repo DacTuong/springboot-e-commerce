@@ -25,11 +25,21 @@ public class Attribute {
     @Column(name = "name_attribute", nullable = false)
     private String nameAttribute;
 
-    @Column(name = "data_type", nullable = false)
-    private String dataType;
+    @Column(name = "input_type", nullable = false)
+    private String inputType;
+
+    // Nơi lưu trữ dữ liệu của thuộc tính
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_storage")
+    private AttributeStorage attributeStorage;
 
     @Column(name = "is_filterable", nullable = false)
     private Long isFilter;
+
+    // Có phải thuộc tính phân loại biến thể hay không
+    @Column(name = "is_variant", nullable = false)
+    private Long isVariant;
+
     // ===== Getter & Setter =====
 
     public Long getIdAttribute() {
@@ -56,19 +66,35 @@ public class Attribute {
         this.nameAttribute = nameAttribute;
     }
 
-    public String getDataType() {
-        return dataType;
+    public String getInputType() {
+        return inputType;
     }
 
-    public void setDataType(String dataType) {
-        this.dataType = dataType;
+    public void setInputType(String inputType) {
+        this.inputType = inputType;
     }
 
-    public Long getIsFiter() {
+    public AttributeStorage getAttributeStorage() {
+        return attributeStorage;
+    }
+
+    public void setAttributeStorage(AttributeStorage attributeStorage) {
+        this.attributeStorage = attributeStorage;
+    }
+
+    public Long getIsFilterable() {
         return isFilter;
     }
 
-    public void setIsFiter(Long isFiter) {
+    public void setIsFilterable(Long isFiter) {
         this.isFilter = isFiter;
+    }
+
+    public Long getIsVariant() {
+        return isVariant;
+    }
+
+    public void setIsVariant(Long isVariant) {
+        this.isVariant = isVariant;
     }
 }

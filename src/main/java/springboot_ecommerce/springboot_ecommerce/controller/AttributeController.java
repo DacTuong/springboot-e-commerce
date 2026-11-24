@@ -18,7 +18,7 @@ import springboot_ecommerce.springboot_ecommerce.service.AttributeService;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @RestController
-@RequestMapping("/api/attributes")
+@RequestMapping("/api/attribute")
 @CrossOrigin(origins = "http://localhost:3000")
 public class AttributeController {
     private final AttributeService attributeService;

@@ -7,21 +7,38 @@ public class CreateAttributeRequest {
     @JsonProperty("name_attribute")
     private String nameAttribute;
 
-    @JsonProperty("data_type")
-    private String dataType;
+    @JsonProperty("input_type")
+    private String inputType;
 
-    @JsonProperty("is_filter")
-    private Long isFilter;
+    @JsonProperty("id_storage")
+    private Long idStorage;
 
-    // ✅ BẮT BUỘC phải có
+    @JsonProperty("is_filterable")
+    private Long isFilterable;
+
+    @JsonProperty("is_variant")
+    private Long isVariant;
+
+    // Constructor mặc định
     public CreateAttributeRequest() {
     }
 
-    public CreateAttributeRequest(String nameAttribute, String dataType) {
+    // Constructor
+    public CreateAttributeRequest(
+            String nameAttribute,
+            String inputType,
+            Long idStorage,
+            Long isFilterable,
+            Long isVariant) {
 
         this.nameAttribute = nameAttribute;
-        this.dataType = dataType;
+        this.inputType = inputType;
+        this.idStorage = idStorage;
+        this.isFilterable = isFilterable;
+        this.isVariant = isVariant;
     }
+
+    // Getter & Setter
 
     public String getNameAttribute() {
         return nameAttribute;
@@ -29,22 +46,37 @@ public class CreateAttributeRequest {
 
     public void setNameAttribute(String nameAttribute) {
         this.nameAttribute = nameAttribute;
-
     }
 
-    public String getDataType() {
-        return dataType;
+    public String getInputType() {
+        return inputType;
     }
 
-    public void setDataType(String dataType) {
-        this.dataType = dataType;
+    public void setInputType(String inputType) {
+        this.inputType = inputType;
     }
 
-    public Long getIsFilter() {
-        return isFilter;
+    public Long getIdStorage() {
+        return idStorage;
     }
 
-    public void setIsFilter(Long isFilter) {
-        this.isFilter = isFilter;
+    public void setIdStorage(Long idStorage) {
+        this.idStorage = idStorage;
+    }
+
+    public Long getIsFilterable() {
+        return isFilterable;
+    }
+
+    public void setIsFilterable(Long isFilterable) {
+        this.isFilterable = isFilterable;
+    }
+
+    public Long getIsVariant() {
+        return isVariant;
+    }
+
+    public void setIsVariant(Long isVariant) {
+        this.isVariant = isVariant;
     }
 }

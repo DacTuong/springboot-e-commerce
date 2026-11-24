@@ -20,7 +20,7 @@ import springboot_ecommerce.springboot_ecommerce.service.AttributeStorageService
 import springboot_ecommerce.springboot_ecommerce.dto.response.AttributeResponse;
 
 @RestController
-@RequestMapping("/api/attribute-type")
+@RequestMapping("/api/attribute-storage")
 @CrossOrigin("http://localhost:3000")
 public class AttributeStorageController {
     private final AttributeStorageService attributeTypeService;

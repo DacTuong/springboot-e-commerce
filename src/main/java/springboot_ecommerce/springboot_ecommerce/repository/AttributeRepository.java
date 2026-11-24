@@ -21,7 +21,10 @@ public interface AttributeRepository extends JpaRepository<Attribute, Long> {
             SELECT new springboot_ecommerce.springboot_ecommerce.dto.response.AttributeResponse(
                 a.idAttribute,
                 a.nameAttribute,
-               a.dataType
+               a.inputType,
+               a.attributeStorage.idStorage,
+               a.isFilter,
+               a.isVariant
             )
             FROM Attribute a
             WHERE a.attributeGroup.idGroup = :groupId
