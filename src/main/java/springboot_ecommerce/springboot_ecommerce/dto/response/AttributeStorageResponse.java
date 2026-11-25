@@ -3,6 +3,9 @@ package springboot_ecommerce.springboot_ecommerce.dto.response;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class AttributeStorageResponse {
+    @JsonProperty("id_storage")
+    private Long idStorage;
+
     @JsonProperty("storage_code")
     private String storageCode;
 
@@ -14,9 +17,18 @@ public class AttributeStorageResponse {
     }
 
     // Constructor có tham số
-    public AttributeStorageResponse(String storageCode, String storageName) {
+    public AttributeStorageResponse(Long idStorage, String storageCode, String storageName) {
+        this.idStorage = idStorage;
         this.storageCode = storageCode;
         this.storageName = storageName;
+    }
+
+    public Long getIdStorage() {
+        return idStorage;
+    }
+
+    public void setIdStorage(Long idStorage) {
+        this.idStorage = idStorage;
     }
 
     public String getStorageCode() {

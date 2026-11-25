@@ -72,6 +72,7 @@ public class AttributeStorageServiceImpl implements AttributeStorageService {
 
         for (AttributeStorage item : attributeStorages) {
             responses.add(new AttributeStorageResponse(
+                    item.getIdStorage(),
                     item.getStorageCode(),
                     item.getStorageName()));
         }
