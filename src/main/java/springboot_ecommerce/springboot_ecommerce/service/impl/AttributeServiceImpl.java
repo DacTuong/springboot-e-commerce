@@ -8,11 +8,13 @@ import springboot_ecommerce.springboot_ecommerce.dto.request.CreateAttributeRequ
 import springboot_ecommerce.springboot_ecommerce.dto.response.AttributeResponse;
 import springboot_ecommerce.springboot_ecommerce.entity.Attribute;
 import springboot_ecommerce.springboot_ecommerce.entity.AttributeGroup;
+import springboot_ecommerce.springboot_ecommerce.entity.AttributeStorage;
 import springboot_ecommerce.springboot_ecommerce.entity.Brand;
 import springboot_ecommerce.springboot_ecommerce.repository.AttributeGroupRepository;
 import springboot_ecommerce.springboot_ecommerce.repository.AttributeRepository;
 
 import springboot_ecommerce.springboot_ecommerce.service.AttributeService;
+import springboot_ecommerce.springboot_ecommerce.repository.AttributeStorageRepository;
 
 @Service
 public class AttributeServiceImpl implements AttributeService {
@@ -20,12 +22,15 @@ public class AttributeServiceImpl implements AttributeService {
     private final AttributeRepository attributeRepository;
 
     private final AttributeGroupRepository attributeGroupRepository;
+    private final AttributeStorageRepository attributeStorageRepository;
 
     public AttributeServiceImpl(AttributeRepository attributeRepository,
-            AttributeGroupRepository attributeGroupRepository) {
+            AttributeGroupRepository attributeGroupRepository, AttributeStorageRepository attributeStorageRepository) {
         this.attributeRepository = attributeRepository;
 
         this.attributeGroupRepository = attributeGroupRepository;
+
+        this.attributeStorageRepository = attributeStorageRepository;
     }
 
     @Override
@@ -46,8 +51,19 @@ public class AttributeServiceImpl implements AttributeService {
             Attribute attribute = new Attribute();
             attribute.setNameAttribute(req.getNameAttribute());
             attribute.setInputType(req.getInputType());
+            attribute.setIsVariant(req.getIsVariant());
 
             attribute.setIsFilterable(req.getIsFilterable());
+
+            if (req.getIdStorage() != null) {
+
+                AttributeStorage attributeStorage = attributeStorageRepository
+                        .findById(req.getIdStorage())
+                        .orElseThrow(() -> new RuntimeException("Không tìm thấy nguồn dữ liệu"));
+
+                attribute.setAttributeStorage(attributeStorage);
+            }
+
             attribute.setAttributeGroup(group);
             return attribute;
         }).toList();
