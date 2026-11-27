@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import springboot_ecommerce.springboot_ecommerce.dto.request.CreateAttributeGroupRequest;
 import springboot_ecommerce.springboot_ecommerce.dto.request.CreateGroupItemRequest;
 import springboot_ecommerce.springboot_ecommerce.dto.response.AttributeGroupResponse;
+import springboot_ecommerce.springboot_ecommerce.dto.response.GroupAttributeDetailResponse;
 import springboot_ecommerce.springboot_ecommerce.dto.response.GroupItemResponse;
 import springboot_ecommerce.springboot_ecommerce.entity.AttributeGroup;
 import springboot_ecommerce.springboot_ecommerce.entity.Category;
@@ -84,12 +85,17 @@ public class AttributeGroupImpl implements AttributeGroupService {
     }
 
     @Override
-    public GroupItemResponse getNameGroupByIdGroup(Long idGroup) {
+    public GroupAttributeDetailResponse getGroupInfo(Long idGroup) {
         AttributeGroup group = attributeGroupRepository.findById(idGroup)
                 .orElseThrow(() -> new RuntimeException("Group not found"));
-        return new GroupItemResponse(
+
+        // 2. Lấy danh mục mà nhóm thuộc tính đang tham chiếu
+        Category category = group.getCategory();
+        return new GroupAttributeDetailResponse(
                 group.getIdGroup(),
-                group.getNameGroup());
+                group.getNameGroup(),
+                category.getIdCategory(),
+                category.getCategoryName());
     }
     // @Override
     // public List<GroupItemResponse> getGroupsByCategoryId(Long categoryId) {

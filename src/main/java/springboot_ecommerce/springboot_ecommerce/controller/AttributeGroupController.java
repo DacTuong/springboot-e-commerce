@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import springboot_ecommerce.springboot_ecommerce.dto.request.CreateAttributeGroupRequest;
 import springboot_ecommerce.springboot_ecommerce.dto.response.AttributeGroupResponse;
-import springboot_ecommerce.springboot_ecommerce.dto.response.GroupItemResponse;
+import springboot_ecommerce.springboot_ecommerce.dto.response.GroupAttributeDetailResponse;
 import springboot_ecommerce.springboot_ecommerce.service.AttributeGroupService;
 
 @RestController
@@ -43,8 +43,8 @@ public class AttributeGroupController {
 
     // Lấy ra tên và id của nhóm thuộc tính
     @GetMapping("/{idGroup}/info")
-    public GroupItemResponse getGroup(@PathVariable("idGroup") Long groupId) {
-        return attributeGroupService.getNameGroupByIdGroup(groupId);
+    public GroupAttributeDetailResponse getGroup(@PathVariable("idGroup") Long groupId) {
+        return attributeGroupService.getGroupInfo(groupId);
     }
 
     // @GetMapping("/by-category")

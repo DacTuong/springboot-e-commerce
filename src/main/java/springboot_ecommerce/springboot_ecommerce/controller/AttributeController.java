@@ -11,11 +11,17 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
+import springboot_ecommerce.springboot_ecommerce.dto.BrandDTO;
+import springboot_ecommerce.springboot_ecommerce.dto.SeriDTO;
 import springboot_ecommerce.springboot_ecommerce.dto.request.CreateAttributeRequest;
+import springboot_ecommerce.springboot_ecommerce.dto.request.UpdateAttributeRequest;
 import springboot_ecommerce.springboot_ecommerce.dto.response.AttributeResponse;
 import springboot_ecommerce.springboot_ecommerce.service.AttributeService;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.bind.annotation.PutMapping;
 
 @RestController
 @RequestMapping("/api/attribute")
@@ -47,4 +53,10 @@ public class AttributeController {
         return ResponseEntity.ok(attributeService.getAttributeById(idAttribute));
     }
 
+    @PutMapping(value = "/{idAttribute}")
+    public ResponseEntity<?> updateAttribute(@PathVariable Long idAttribute,
+            @RequestBody UpdateAttributeRequest request) {
+        attributeService.updateAttribute(idAttribute, request);
+        return ResponseEntity.ok("Cập nhật thành công");
+    }
 }

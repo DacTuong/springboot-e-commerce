@@ -3,8 +3,10 @@ package springboot_ecommerce.springboot_ecommerce.service.impl;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import springboot_ecommerce.springboot_ecommerce.dto.request.CreateAttributeRequest;
+import springboot_ecommerce.springboot_ecommerce.dto.request.UpdateAttributeRequest;
 import springboot_ecommerce.springboot_ecommerce.dto.response.AttributeResponse;
 import springboot_ecommerce.springboot_ecommerce.entity.Attribute;
 import springboot_ecommerce.springboot_ecommerce.entity.AttributeGroup;
@@ -43,6 +45,7 @@ public class AttributeServiceImpl implements AttributeService {
     }
 
     @Override
+    @Transactional
     public void saveAttributes(Long idGroup, List<CreateAttributeRequest> requests) {
         AttributeGroup group = attributeGroupRepository.findById(idGroup)
                 .orElseThrow(() -> new RuntimeException("Không thể tìm thấy nhóm thuộc tính"));
@@ -52,7 +55,6 @@ public class AttributeServiceImpl implements AttributeService {
             attribute.setNameAttribute(req.getNameAttribute());
             attribute.setInputType(req.getInputType());
             attribute.setIsVariant(req.getIsVariant());
-
             attribute.setIsFilterable(req.getIsFilterable());
 
             if (req.getIdStorage() != null) {
@@ -86,4 +88,69 @@ public class AttributeServiceImpl implements AttributeService {
                 attribute.getIsVariant());
 
     }
+
+    @Override
+    @Transactional
+    public void updateAttribute(Long idAttribute, UpdateAttributeRequest request) {
+
+        // 1. Kiểm tra id có tồn tại
+        Attribute attribute = attributeRepository.findById(idAttribute)
+                .orElseThrow(() -> new RuntimeException("Không tìm thấy thuộc tính này"));
+        // 2. Kiểm tra Request
+        if (request == null) {
+            throw new RuntimeException("Dữ liệu cập nhật không được để trống");
+        }
+
+        // 3. Kiểm tra tên thuộc tính
+        if (request.getNameAttribute() == null ||
+                request.getNameAttribute().trim().isEmpty()) {
+
+            throw new RuntimeException("Tên thuộc tính không được để trống");
+        }
+
+        // 4. Kiểm tra inputType
+        if (request.getInputType() == null ||
+                request.getInputType().trim().isEmpty()) {
+
+            throw new RuntimeException("Input type không được để trống");
+        }
+
+        // 5. Kiểm tra idStorage
+        if (request.getIdStorage() == null) {
+            throw new RuntimeException("Storage không được để trống");
+        }
+
+        AttributeStorage storage = attributeStorageRepository
+                .findById(request.getIdStorage())
+                .orElseThrow(() -> new RuntimeException("Storage không tồn tại"));
+
+        // 6. Kiểm tra isFilterable
+        if (request.getIsFilterable() == null ||
+                (request.getIsFilterable() != 0 &&
+                        request.getIsFilterable() != 1)) {
+
+            throw new RuntimeException(
+                    "isFilterable chỉ được nhận giá trị 0 hoặc 1");
+        }
+
+        // 7. Kiểm tra isVariant
+        if (request.getIsVariant() == null ||
+                (request.getIsVariant() != 0 &&
+                        request.getIsVariant() != 1)) {
+
+            throw new RuntimeException(
+                    "isVariant chỉ được nhận giá trị 0 hoặc 1");
+        }
+
+        // 8. Cập nhật dữ liệu
+        attribute.setNameAttribute(request.getNameAttribute().trim());
+        attribute.setInputType(request.getInputType());
+        attribute.setAttributeStorage(storage);
+        attribute.setIsFilterable(request.getIsFilterable());
+        attribute.setIsVariant(request.getIsVariant());
+
+        // 9. Lưu dữ liệu
+        attributeRepository.save(attribute);
+    }
+
 }
