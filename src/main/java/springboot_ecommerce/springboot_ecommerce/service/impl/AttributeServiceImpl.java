@@ -84,6 +84,9 @@ public class AttributeServiceImpl implements AttributeService {
                 attribute.getAttributeStorage() != null
                         ? attribute.getAttributeStorage().getIdStorage()
                         : null,
+                attribute.getAttributeStorage() != null
+                        ? attribute.getAttributeStorage().getStorageCode()
+                        : null,
                 attribute.getIsFilterable(),
                 attribute.getIsVariant());
 

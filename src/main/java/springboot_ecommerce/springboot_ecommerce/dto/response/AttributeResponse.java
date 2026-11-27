@@ -15,6 +15,9 @@ public class AttributeResponse {
     @JsonProperty("id_storage")
     private Long idStorage;
 
+    @JsonProperty("storage_code")
+    private String storageCode;
+
     @JsonProperty("is_filterable")
     private Long isFilterable;
 
@@ -29,6 +32,7 @@ public class AttributeResponse {
             String nameAttribute,
             String inputType,
             Long idStorage,
+            String storageCode,
             Long isFilterable,
             Long isVariant) {
 
@@ -36,6 +40,7 @@ public class AttributeResponse {
         this.nameAttribute = nameAttribute;
         this.inputType = inputType;
         this.idStorage = idStorage;
+        this.storageCode = storageCode;
         this.isFilterable = isFilterable;
         this.isVariant = isVariant;
     }
@@ -70,6 +75,14 @@ public class AttributeResponse {
 
     public void setIdStorage(Long idStorage) {
         this.idStorage = idStorage;
+    }
+
+    public String getStorageCode() {
+        return storageCode;
+    }
+
+    public void setStorageCode(String storageCode) {
+        this.storageCode = storageCode;
     }
 
     public Long getIsFilterable() {

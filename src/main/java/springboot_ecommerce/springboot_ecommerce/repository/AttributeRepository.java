@@ -23,6 +23,7 @@ public interface AttributeRepository extends JpaRepository<Attribute, Long> {
                 a.nameAttribute,
                a.inputType,
                a.attributeStorage.idStorage,
+               a.attributeStorage.storageCode,
                a.isFilter,
                a.isVariant
             )
